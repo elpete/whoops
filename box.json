@@ -1,8 +1,8 @@
 {
     "name":"whoops",
-    "version":"0.0.0",
+    "version":"1.0.0",
     "author":"Eric Peterson",
-    "location":"elpete/whoops#v0.0.0",
+    "location":"elpete/whoops#v1.0.0",
     "homepage":"https://github.com/elpete/whoops",
     "documentation":"https://github.com/elpete/whoops",
     "repository":{
@@ -17,7 +17,9 @@
     "dependencies":{
         "cfmlparser":"github:foundeo/cfmlparser"
     },
-    "devDependencies":{},
+    "devDependencies":{
+        
+    },
     "installPaths":{
         "testbox":"testbox",
         "coldbox":"tests/resources/app/coldbox",
