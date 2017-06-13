@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    font-size: 16px;
+    color: #131313;
+    font-family: 'Lato', sans-serif;
+}
+
+.whoops {
+    display: flex;
+    height: 100%;
+}
+
+.whoops__nav {
+    flex: 0 0 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.whoops__detail {
+    flex: 1 1 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.exception {
+    flex-basis: 20%;
+    padding: 2em;
+    background-color: #2a2a2a;
+}
+
+.exception__title {
+    color: #bebebe;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+
+.exception__message {
+    color: white;
+}
+
+.whoops__stacktrace_panel {
+    flex: 5;
+    padding: 0 1em 1em 1em;
+    overflow: scroll;
+    background-color: #ded8d8;
+}
+
+.whoops_stacktrace_panel_info {
+    padding: 0.5em 1em;
+    background-color: #ded8d8;   
+}
+
+.stacktrace__list {
+    list-style: none;
+}
+
+.stacktrace {
+    padding: 1em;
+    background-color: #eeeeee;
+    color: #797878;
+    transition: all 100ms ease;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: inset 0px 0 0 0 #4288CE;
+    transition: all 300ms ease-in-out;
+}
+
+.stacktrace:hover {
+    background-color: #e6e3e3;
+}
+
+.stacktrace--active {
+    box-shadow: inset -5px 0 0 0 #4288CE;
+    color: #4288CE;
+}
+
+.stacktrace:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+
+.stacktrace__info {
+    flex: 1;   
+}
+
+.stacktrace__location {
+    font-size: 0.8em;
+    padding: 0.5em;
+}
+
+.stacktrace__line-number {
+    color: black;
+}
+
+.stacktrace__code {
+    font-family: 'Fira Mono', monospace;
+    padding: 0.5em;
+    font-size: 0.65em;
+    color: #a29d9d;
+}
+
+.code-preview {
+    flex-basis: 60%;
+    font-family: 'Fira Mono', monospace;
+    background-color: #333;
+    color: #E9E4E5;
+    overflow: scroll;
+    padding-left: 0.5em;
+}
+
+.request-info {
+    flex: 1;
+    overflow: scroll;
+    padding: 2em;
+}
+
+.badge {
+    background-color: #e3e3e3;
+    border-radius: 50%;
+    padding: 1em;
+    font-size: 0.5em;
+    margin-right: 1em;
+}

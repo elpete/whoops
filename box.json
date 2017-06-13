@@ -15,15 +15,13 @@
     "description":"Interactive debug for exceptions in ColdBox",
     "type":"modules",
     "dependencies":{
-        
+        "cfmlparser":"github:foundeo/cfmlparser"
     },
-    "devDependencies":{
-        "coldbox":"^4.3.0+188",
-        "testbox":"^2.4.0+80"
-    },
+    "devDependencies":{},
     "installPaths":{
         "testbox":"testbox",
-        "coldbox":"tests/resources/app/coldbox"
+        "coldbox":"tests/resources/app/coldbox",
+        "cfmlparser":"cfmlparser"
     },
     "scripts":{
         "postVersion":"package set location='elpete/whoops#v`package version`'",
