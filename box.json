@@ -1,0 +1,38 @@
+{
+    "name":"whoops",
+    "version":"0.0.0",
+    "author":"Eric Peterson",
+    "location":"elpete/whoops#v0.0.0",
+    "homepage":"https://github.com/elpete/whoops",
+    "documentation":"https://github.com/elpete/whoops",
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/elpete/whoops"
+    },
+    "bugs":"https://github.com/elpete/whoops/issues",
+    "slug":"whoops",
+    "shortDescription":"Interactive debug for exceptions in ColdBox",
+    "description":"Interactive debug for exceptions in ColdBox",
+    "type":"modules",
+    "dependencies":{
+        
+    },
+    "devDependencies":{
+        "coldbox":"^4.3.0+188",
+        "testbox":"^2.4.0+80"
+    },
+    "installPaths":{
+        "testbox":"testbox",
+        "coldbox":"tests/resources/app/coldbox"
+    },
+    "scripts":{
+        "postVersion":"package set location='elpete/whoops#v`package version`'",
+        "onRelease":"publish",
+        "postPublish":"!git push && !git push --tags"
+    },
+    "ignore":[
+        "**/.*",
+        "test",
+        "tests"
+    ]
+}
