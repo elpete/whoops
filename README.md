@@ -1,17 +1,19 @@
 # whoops
 
-## Interactive debug for exceptions in ColdBox
+## Interactive debug for exceptions in CFML
 
 Blatently copied from https://filp.github.io/whoops/ (Thank you!)
 
+### Install
+
+`box install whoops --saveDev`
+
 ### Usage
 
-By default, the module will register itself as the `customErrorTemplate` in the `development` environment.  You can control what environments  are automatically registered using the `targetEnvironments` setting key (either as a list or as an array).
+The module will register itself as the `customErrorTemplate` regardless of the environment.  For this reason, make sure you install whoops as a `devDependency`.
 
-Alternative, you can manually set your `coldbox.customErrorTemplate` to the path to `/whoops/views/whoops.cfm` from your application root.
+Alternatively, you can manually set your `coldbox.customErrorTemplate` to the path to `/whoops/views/whoops.cfm` from your application root.
 
 ```
-// Usually....
-
 coldbox.customErrorTemplate = "/modules/whoops/views/whoops.cfm";
 ```
