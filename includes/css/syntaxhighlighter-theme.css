@@ -236,3 +236,4 @@
     color: white !important; }
   .syntaxhighlighter .color3, .syntaxhighlighter .color3 a {
     color: #ffaa3e !important; }
+  .syntaxhighlighter .line:hover { background-color: #253e5a !important; }
