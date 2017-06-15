@@ -1,8 +1,8 @@
 {
     "name":"whoops",
-    "version":"2.0.0",
+    "version":"2.0.1",
     "author":"Eric Peterson",
-    "location":"elpete/whoops#v2.0.0",
+    "location":"elpete/whoops#v2.0.1",
     "homepage":"https://github.com/elpete/whoops",
     "documentation":"https://github.com/elpete/whoops",
     "repository":{
