@@ -1,16 +1,20 @@
 <cfscript>
-    function strLimit( str, limit, ending = "..." ) {
-        if ( len( str ) <= limit ) {
-            return str;
+    if ( ! structKeyExists( variables, "strLimit" ) ) {
+        function strLimit( str, limit, ending = "..." ) {
+            if ( len( str ) <= limit ) {
+                return str;
+            }
+            return mid( str, 1, limit ) & ending;
         }
-        return mid( str, 1, limit ) & ending;
     }
-
-    function isScriptFile( path ) {
-        return application.wirebox.getInstance(
-            name = "File@CFMLParser",
-            initArguments = { path = path }
-        ).isScript();
+    
+    if ( ! structKeyExists( variables, "isScriptFile" ) ) {
+        function isScriptFile( path ) {
+            return application.wirebox.getInstance(
+                name = "File@CFMLParser",
+                initArguments = { path = path }
+            ).isScript();
+        }
     }
 </cfscript>
 
@@ -39,16 +43,19 @@
                 <div class="whoops__stacktrace_panel">
                     <ul class="stacktrace__list">
                         <cfset root = expandPath( "/" ) />
-                        <cfloop array="#local.e.TagContext#" index="i" item="instance">
-                            <li id="stack#stackFrames - i + 1#" class="stacktrace <cfif i == 1>stacktrace--active</cfif>">
+                        <cfloop from="1" to="#arrayLen( local.e.TagContext )#" index="i">
+                            <cfset instance = local.e.TagContext[ i ] />
+                            <li id="stack#stackFrames - i + 1#" class="stacktrace <cfif i EQ 1>stacktrace--active</cfif>">
                                 <span class="badge">#stackFrames - i + 1#</span>
                                 <div class="stacktrace__info">
                                     <h3 class="stacktrace__location">
                                         #replace( instance.template, root, "" )#:<span class="stacktrace__line-number">#instance.line#</span>
                                     </h3>
-                                    <h4 class="stacktrace__code">
-                                        #HTMLEditFormat( strLimit( instance.codePrintPlain, 70 ) )#
-                                    </h4>
+                                    <cfif structKeyExists( instance, "codePrintPlain" )>
+                                        <h4 class="stacktrace__code">
+                                            #HTMLEditFormat( strLimit( instance.codePrintPlain, 70 ) )#
+                                        </h4>
+                                    </cfif>
                                 </div>
                             </li>
                         </cfloop>
@@ -74,10 +81,14 @@
                         <h2>Headers</h2>
                         <cfdump var="#getHttpRequestData().headers#" top="2" expand="false" />
                     </div>
-                    <div>
-                        <h2>session</h2>
-                        <cfdump var="#session#" top="2" expand="false" />
-                    </div>
+                    <cftry>
+                        <cfset thisSession = session />
+                        <div>
+                            <h2>session</h2>
+                                <cfdump var="#thisSession#" top="2" expand="false" />
+                        </div>
+                        <cfcatch></cfcatch>
+                    </cftry>
                     <div>
                         <h2>application</h2>
                         <cfdump var="#application#" top="2" expand="false" />
@@ -89,7 +100,8 @@
                 </div>
             </div>
         </div>
-        <cfloop array="#local.e.TagContext#" index="i" item="instance">
+        <cfloop from="1" to="#arrayLen( local.e.TagContext )#" index="i">
+            <cfset instance = local.e.TagContext[ i ] />
             <cfset highlighter = isScriptFile( instance.template ) ? "js" : "cf" />
             <div id="stack#stackFrames - i + 1#-code" data-highlight-line="#instance.line#" style="display: none;">
                 <script type="text/syntaxhighlighter" class="brush: #highlighter#; highlight: [#instance.line#]"><![CDATA[#lTrim( fileRead( instance.template ) )#]]></script>
@@ -99,4 +111,3 @@
     </body>
     </html>
 </cfoutput>
-
