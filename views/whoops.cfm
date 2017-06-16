@@ -1,20 +1,20 @@
 <cfscript>
     if ( ! structKeyExists( variables, "strLimit" ) ) {
-        function strLimit( str, limit, ending = "..." ) {
+        variables.strLimit = function( str, limit, ending = "..." ) {
             if ( len( str ) <= limit ) {
                 return str;
             }
             return mid( str, 1, limit ) & ending;
-        }
+        };
     }
     
     if ( ! structKeyExists( variables, "isScriptFile" ) ) {
-        function isScriptFile( path ) {
+        variables.isScriptFile = function( path ) {
             return application.wirebox.getInstance(
                 name = "File@CFMLParser",
                 initArguments = { path = path }
             ).isScript();
-        }
+        };
     }
 </cfscript>
 
