@@ -1,23 +1,3 @@
-<cfscript>
-    if ( ! structKeyExists( variables, "strLimit" ) ) {
-        function strLimit( str, limit, ending = "..." ) {
-            if ( len( str ) <= limit ) {
-                return str;
-            }
-            return mid( str, 1, limit ) & ending;
-        }
-    }
-    
-    if ( ! structKeyExists( variables, "isScriptFile" ) ) {
-        function isScriptFile( path ) {
-            return application.wirebox.getInstance(
-                name = "File@CFMLParser",
-                initArguments = { path = path }
-            ).isScript();
-        }
-    }
-</cfscript>
-
 <cfset local.e = oException.getExceptionStruct() />
 <cfset stackFrames = arrayLen( local.e.TagContext ) />
 
