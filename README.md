@@ -1,7 +1,12 @@
 # whoops
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
-## Interactive debug for exceptions in CFML
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/TQMfPZtDP7SHs7UgJVGg61uH/elpete/whoops'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/TQMfPZtDP7SHs7UgJVGg61uH/elpete/whoops.svg' />
+</a>
+
+## Interactive debugger for exceptions in CFML
 
 Blatently copied from https://filp.github.io/whoops/ (Thank you!)
 
