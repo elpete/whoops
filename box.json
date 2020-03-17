@@ -15,7 +15,6 @@
     "description":"Interactive debug for exceptions in ColdBox",
     "type":"modules",
     "dependencies":{
-        "cfmlparser":"github:foundeo/cfmlparser"
     },
     "devDependencies":{
         
