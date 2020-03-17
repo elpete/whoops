@@ -3,7 +3,7 @@ Element.prototype.documentOffsetTop = function () {
 };
 
 function scrollToLine( line ) {
-    var selectedLine = codeContainer.querySelector( ".line.number" + (line) );
+    var selectedLine = codeContainer.querySelector( ".line.number" + line );
     var top = selectedLine.documentOffsetTop() - codeWrapper.offsetHeight / 2;
     codeWrapper.scrollTop = top;
 }
@@ -14,7 +14,6 @@ function toggleActiveClasses( id ) {
 }
 
 function changeCodePanel( id ) {
-    console.log(id);
     toggleActiveClasses( id );
     var code = document.getElementById( id + "-code" );
     var highlightLine = code.getAttribute( "data-highlight-line" );
