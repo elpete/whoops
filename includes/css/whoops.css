@@ -128,3 +128,82 @@ body {
     font-size: 0.5em;
     margin-right: 1em;
 }
+
+.data-table-container label {
+  font-size: 16px;
+  color: #303030;
+  font-weight: bold;
+  margin: 10px 0;
+
+  display: block;
+
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+  .data-table {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .data-table tbody {
+    font: 13px "Inconsolata", "Fira Mono", "Source Code Pro", Monaco, Consolas, "Lucida Console", monospace;
+  }
+
+  .data-table thead {
+    display: none;
+  }
+
+  .data-table tr {
+    padding: 5px 0;
+  }
+  .data-table tr td{
+    padding: 5px 0;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  .data-table td:first-child {
+    width: 20%;
+    min-width: 130px;
+    overflow: hidden;
+    font-weight: bold;
+    color: #463C54;
+    padding-right: 5px;
+    font-weight: bold;
+
+  }
+
+  .data-table td:last-child {
+    width: 80%;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .data-table span.empty {
+    color: rgba(0, 0, 0, .3);
+    font-weight: 300;
+  }
+  .data-table label.empty {
+      display: inline;
+  }
+.details-container {
+  height: 100%;
+  overflow: auto;
+  float: right;
+  width: 70%;
+  background: #fafafa;
+}
+  .details {
+    padding: 5px;
+  }
+
+    .details-heading {
+      color: #4288CE;
+      font-weight: 300;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }

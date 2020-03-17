@@ -3,7 +3,7 @@ Element.prototype.documentOffsetTop = function () {
 };
 
 function scrollToLine( line ) {
-    var selectedLine = codeContainer.querySelector( ".line.number" + line );
+    var selectedLine = codeContainer.querySelector( ".line.number" + (line) );
     var top = selectedLine.documentOffsetTop() - codeWrapper.offsetHeight / 2;
     codeWrapper.scrollTop = top;
 }
@@ -14,6 +14,7 @@ function toggleActiveClasses( id ) {
 }
 
 function changeCodePanel( id ) {
+    console.log(id);
     toggleActiveClasses( id );
     var code = document.getElementById( id + "-code" );
     var highlightLine = code.getAttribute( "data-highlight-line" );
@@ -24,12 +25,6 @@ function changeCodePanel( id ) {
 var codeWrapper = document.querySelector( ".code-preview" );
 var codeContainer = document.getElementById( "code-container" );
 
-// remove weird spaces.
-Array.from( document.querySelectorAll( ".line.number1 code.spaces" ) )
-    .forEach( function( node ) {
-        node.remove();
-    } );
-
 Array.from( document.querySelectorAll( ".stacktrace" ) )
     .forEach( function( stackTrace ) {
         stackTrace.addEventListener( "click", function( e ) {
@@ -39,5 +34,5 @@ Array.from( document.querySelectorAll( ".stacktrace" ) )
 
 document.addEventListener( "DOMContentLoaded", function() {
     var initialStackTrace = document.querySelector( ".stacktrace__list .stacktrace" );
-    changeCodePanel( initialStackTrace.id );
+    setTimeout(function(){ changeCodePanel( initialStackTrace.id ); }, 500);
 } );
