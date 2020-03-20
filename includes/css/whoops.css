@@ -42,7 +42,7 @@ body {
 .exception__title {
     color: #bebebe;
     font-size: 2em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0;
 }
 
 .exception__message {

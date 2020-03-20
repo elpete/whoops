@@ -157,9 +157,9 @@
         <div class="whoops">
             <div class="whoops__nav">
                 <div class="exception">
-                    <h1 class="exception__title">#EventDetails["Error Code"]# #local.e.type#</h1>
-                    <div class="exception__message">#local.e.message#</div>
                     <small class="exception__message">#dateformat(now(), "MM/DD/YYYY")# #timeformat(now(),"hh:MM:SS TT")#</small>
+                    <h1 class="exception__title">#trim(EventDetails["Error Code"] & " " & local.e.type)#</h1>
+                    <div class="exception__message">#local.e.message#</div>
                 </div>
                 <div class="whoops_stacktrace_panel_info">
                     Stack Frame(s): #stackFrames#
