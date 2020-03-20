@@ -7,19 +7,98 @@
             return mid( str, 1, limit ) & ending;
         };
     }
-    
+
+    // Detect Session Scope
+    local.sessionScopeExists = true;
+    try { structKeyExists( session ,'x' ); }
+    catch ( any e ) {
+        local.sessionScopeExists = false;
+    }
+    try{
+        local.thisInetHost = createObject( "java", "java.net.InetAddress" ).getLocalHost().getHostName();
+    }
+    catch( any e ){
+        local.thisInetHost = "localhost";
+    }
+    var EventDetails = {
+        "Error Code":        (oException.getErrorCode() != 0) ? oException.getErrorCode() : "",
+        "Type":              oException.gettype(),
+        "Extended":          (oException.getExtendedInfo() != "") ? oException.getExtendedInfo() : "",
+        "Message":           HTMLEditFormat( oException.getmessage() ).listChangeDelims( '<br>', chr(13)&chr(10) ),
+        "Detail":            HTMLEditFormat( oException.getDetail() ).listChangeDelims( '<br>', chr(13)&chr(10) ),
+        "Event":             (event.getCurrentEvent() != "") ? event.getCurrentEvent() :"N/A",
+        "Route":             (event.getCurrentRoute() != "") ? event.getCurrentRoute() & ( event.getCurrentRoutedModule() != "" ? " from the " & event.getCurrentRoutedModule() & "module router." : ""):"N/A",
+        "Route Name":        (event.getCurrentRouteName() != "") ? event.getCurrentRouteName() :"N/A",
+        "Routed Module":     (event.getCurrentRoutedModule() != "") ? event.getCurrentRoutedModule():"N/A",
+        "Routed Namespace":  (event.getCurrentRoutedNamespace() != "") ? event.getCurrentRoutedNamespace() :"N/A",
+        "Routed URL":        (event.getCurrentRoutedURL() != "") ? event.getCurrentRoutedURL() :"N/A",
+        "Layout":            (Event.getCurrentLayout() != "") ? Event.getCurrentLayout() :"N/A",
+        "Module":            event.getCurrentLayoutModule(),
+        "View":              event.getCurrentView(),
+        "itemorder": ["Error Code","Type","Extended","Message","Detail","Event","Route","Route Name","Routed Module","Routed Namespace", "Routed URL","Layout","Module","View"]
+    }
+    var frameworkSnapshot = {
+        "Coldfusion ID" :"Session Scope Not Enabled",
+        "Template Path" : CGI.CF_TEMPLATE_PATH,
+        "Path Info"     : CGI.PATH_INFO,
+        "Host"          : CGI.HTTP_HOST,
+        "Server"        : local.thisInetHost,
+        "Query String"  : CGI.QUERY_STRING,
+        "Referrer"      : CGI.HTTP_REFERER,
+        "Browser"       : CGI.HTTP_USER_AGENT,
+        "Remote Address": CGI.REMOTE_ADDR,
+        "itemorder": ["Coldfusion ID","Template Path","Path Info","Host","Server","Query String" ,"Referrer","Browser","Remote Address"]
+    };
+
+    if(local.sessionScopeExists) {
+        var fwString = "";
+        if( isDefined("client")) {
+            if(structkeyExists(session, "cfid") )      fwString &= "CFID=" & client.CFID;
+            if(structkeyExists(session, "CFToken") )   fwString &= "<br/>CFToken=" & client.CFToken;
+        }
+        if( isDefined("session") ) {
+            if(structkeyExists(session, "cfid") )      fwString &= "CFID=" & session.CFID;
+            if(structkeyExists(session, "CFToken") )   fwString &= "<br/>CFToken=" & session.CFToken;
+            if(structkeyExists(session, "sessionID") ) fwString &= "<br/>JSessionID=" & session.sessionID;
+        } 
+        frameworkSnapshot["Coldfusion ID"] = fwString;
+    }
+
+    var databaseInfo = {};
+    if( (
+            isStruct( oException.getExceptionStruct() ) 
+            OR findNoCase( "DatabaseQueryException", getMetadata( oException.getExceptionStruct() ).getName() )
+          ) AND findnocase( "database", oException.getType() )
+    ){
+        var databaseInfo = {
+          "SQL State": oException.getSQLState(),
+          "NativeErrorCode": oException.getNativeErrorCode(),
+          "SQL Sent": oException.getSQL(),
+          "Driver Error Message": oException.getqueryError(),
+          "Name-Value Pairs": oException.getWhere(),
+        };
+
+    }
 
     function displayScope (scope) {
         var list = '<table class="data-table"><tbody>';
-        for( var i in scope ){
+        var orderedArr = scope;
+        if(structKeyExists(scope,'itemorder')) orderedArr = scope.itemorder;
+
+        for( var i in orderedArr ){
             list &= '<tr>';
-            list &= '<td>' & i & '</td>';
-            if(isSimpleValue(scope[i])){
-                list &= '<td>' & (scope[i]) & '</td>';
-            } else if (isObject(scope[i])) {
-                list &= '<td>' & writeDump( var = scope[i], format= "html", top=2, expand=false) & '</td>';
+            if(isDate(scope[i])){
+                list &= '<td width="250">' & i & '</td>';
+                list &= '<td class="overflow-scroll">' & dateformat(scope[i], "mm/dd/yyyy") & " " & timeformat(scope[i], "HH:mm:ss") & '</td>';
+            } else if(isSimpleValue(scope[i])){
+                list &= '<td width="250">' & i & '</td>';
+                list &= '<td class="overflow-scroll">' & (scope[i]) & '</td>';
             } else {
-                list &= '<td>' & writeDump( var = scope[i], format= "html", top=2, expand=false) & '</td>';
+                savecontent variable="myContent" {
+                 writeDump( var = scope[i], format= "html", top=2, expand=false)
+                }
+                list &= '<td width="250">' & i & '</td>';
+                list &= '<td class="overflow-scroll">' & myContent & '</td>';
                 //list &= '<td>' & serializeJSON(scope[i]) & '</td>';
             }
             list &= '</tr>';
@@ -52,8 +131,9 @@
         <div class="whoops">
             <div class="whoops__nav">
                 <div class="exception">
-                    <h1 class="exception__title">#local.e.type#</h1>
-                    <h2 class="exception__message">#local.e.message#</h2>
+                    <h1 class="exception__title">#EventDetails["Error Code"]# #local.e.type#</h1>
+                    <div class="exception__message">#local.e.message#</div>
+                    <small class="exception__message">#dateformat(now(), "MM/DD/YYYY")# #timeformat(now(),"hh:MM:SS TT")#</small>
                 </div>
                 <div class="whoops_stacktrace_panel_info">
                     Stack Frame(s): #stackFrames#
@@ -96,7 +176,20 @@
                 <div class="request-info data-table-container">
                     <h2 class="details-heading">Environment &amp; details:</h2>
                     <cfoutput>
-                        
+
+                    <div class="data-table">
+                        <label>Error Details</label>
+                        #displayScope(EventDetails)#
+                    </div>
+
+                    <div class="data-table">
+                        <label>Framework Snapshot</label>
+                        #displayScope(frameworkSnapshot)#
+                    </div>
+                    <div class="data-table">
+                        <label>Database</label>
+                        #displayScope(databaseInfo)#
+                    </div>
                     <div class="data-table">
                         <label>RC</label>
                         #displayScope(rc)#
@@ -125,6 +218,12 @@
                         <label>Cookies</label>
                         #displayScope(cookie)#
                     </div>
+                    <div class="data-table">
+                        <label>Stack Trace</label>
+                        <div class="data-stacktrace">#processStackTrace( oException.getstackTrace() )#</div>
+                    </div>
+
+
                     </cfoutput>
                 </div>
             </div>

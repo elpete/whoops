@@ -22,7 +22,6 @@
     "installPaths":{
         "testbox":"testbox",
         "coldbox":"tests/resources/app/coldbox",
-        "cfmlparser":"cfmlparser"
     },
     "scripts":{
         "postVersion":"package set location='elpete/whoops#v`package version`'",
