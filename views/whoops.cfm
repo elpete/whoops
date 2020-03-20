@@ -7,7 +7,7 @@
             return mid( str, 1, limit ) & ending;
         };
     }
-    
+
 
     function displayScope (scope) {
         var list = '<table class="data-table"><tbody>';
@@ -26,6 +26,32 @@
         }
         list &= '</tbody></table>';
         return list;
+    }
+
+    function openInEditorURL( required event, required struct instance ) {
+        var editor = event.getController().getUtil().getSystemSetting( "WHOOPS_EDITOR", "" );
+        switch( editor ) {
+            case "vscode":
+                return "vscode://file/#instance.template#:#instance.line#"
+            case "vscode-insiders":
+                return "vscode-insiders://file/#instance.template#:#instance.line#"
+            case "sublime":
+                return "subl://open?url=file://#instance.template#&line=#instance.line#";
+            case "textmate":
+                return "txmt://open?url=file://#instance.template#&line=#instance.line#";
+            case "emacs":
+                return "emacs://open?url=file://#instance.template#&line=#instance.line#";
+            case "macvim":
+                return "mvim://open/?url=file://#instance.template#&line=#instance.line#";
+            case "idea":
+                return "idea://open?file=#instance.template#&line=#instance.line#";
+            case "atom":
+                return "atom://core/open/file?filename=#instance.template#&line=#instance.line#";
+            case "espresso":
+                return "x-espresso://open?filepath=#instance.template#&lines=#instance.line#";
+            default:
+                return "";
+        }
     }
 </cfscript>
 
@@ -83,6 +109,11 @@
                                         </h4>
                                     </cfif>
                                 </div>
+                                <cfif openInEditorURL( event, instance ) NEQ "">
+                                    <a target="_self" rel="noreferrer noopener" href="#openInEditorURL( event, instance )#" class="editorLink__btn">
+                                        Open
+                                    </a>
+                                </cfif>
                             </li>
                         </cfloop>
                     </ul>
@@ -96,7 +127,7 @@
                 <div class="request-info data-table-container">
                     <h2 class="details-heading">Environment &amp; details:</h2>
                     <cfoutput>
-                        
+
                     <div class="data-table">
                         <label>RC</label>
                         #displayScope(rc)#

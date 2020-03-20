@@ -1,7 +1,5 @@
 # whoops
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
-
 ## Interactive debugger for exceptions in CFML
 
 Blatently copied from https://filp.github.io/whoops/ (Thank you!)
@@ -19,13 +17,20 @@ Alternatively, you can manually set your `coldbox.customErrorTemplate` to the pa
 ```
 coldbox.customErrorTemplate = "/modules/whoops/views/whoops.cfm";
 ```
-## Contributors
 
-Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+You can open files in your editor directly from the Whoops template by setting a
+`WHOOPS_EDITOR` environment variable.  Here are the allowed values:
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars2.githubusercontent.com/u/2583646?v=3" width="100px;"/><br /><sub>Eric Peterson</sub>](https://github.com/elpete)<br />[💬](#question-elpete "Answering Questions") [💻](https://github.com/elpete/whoops/commits?author=elpete "Code") [📖](https://github.com/elpete/whoops/commits?author=elpete "Documentation") | [<img src="https://avatars3.githubusercontent.com/u/11138835?v=3" width="100px;"/><br /><sub>Angel Chrystian</sub>](https://github.com/angel-chrystian)<br />[🐛](https://github.com/elpete/whoops/issues?q=author%3Aangel-chrystian "Bug reports") [💻](https://github.com/elpete/whoops/commits?author=angel-chrystian "Code") |
-| :---: | :---: |
-<!-- ALL-CONTRIBUTORS-LIST:END -->
++ vscode
++ vscode-insiders
++ sublime
++ textmate
++ emacs
++ macvim
++ idea
++ atom
++ espresso
 
-This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
+When setting a valid editor, an "Open" button will appear next to the active stacktrace pane.
+
+If you'd like to add an editor, please open a Pull Request adding your editor's url scheme to the top of `views/whoops.cfm`.
