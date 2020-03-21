@@ -1,31 +1,29 @@
 {
-    "name":"whoops",
-    "version":"2.1.0",
-    "author":"Eric Peterson",
-    "location":"elpete/whoops#v2.1.0",
-    "homepage":"https://github.com/elpete/whoops",
-    "documentation":"https://github.com/elpete/whoops",
-    "repository":{
-        "type":"git",
-        "URL":"https://github.com/elpete/whoops"
+    "name": "whoops",
+    "version": "2.1.0",
+    "author": "Eric Peterson",
+    "location": "forgeboxStorage",
+    "homepage": "https://github.com/elpete/whoops",
+    "documentation": "https://github.com/elpete/whoops",
+    "repository": {
+        "type": "git",
+        "URL": "https://github.com/elpete/whoops"
     },
-    "bugs":"https://github.com/elpete/whoops/issues",
-    "slug":"whoops",
-    "shortDescription":"Interactive debug for exceptions in ColdBox",
-    "description":"Interactive debug for exceptions in ColdBox",
-    "type":"modules",
-    "dependencies":{},
-    "devDependencies":{},
-    "installPaths":{
-        "testbox":"testbox",
-        "coldbox":"tests/resources/app/coldbox"
+    "bugs": "https://github.com/elpete/whoops/issues",
+    "slug": "whoops",
+    "shortDescription": "Interactive debug for exceptions in ColdBox",
+    "description": "Interactive debug for exceptions in ColdBox",
+    "type": "modules",
+    "dependencies": {},
+    "devDependencies": {},
+    "installPaths": {
+        "testbox": "testbox",
+        "coldbox": "tests/resources/app/coldbox"
     },
-    "scripts":{
-        "postVersion":"package set location='elpete/whoops#v`package version`'",
-        "onRelease":"publish",
-        "postPublish":"!git push && git push --tags"
+    "scripts": {
+        "onRelease": "publish"
     },
-    "ignore":[
+    "ignore": [
         "**/.*",
         "test",
         "tests"
