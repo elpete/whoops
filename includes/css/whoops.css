@@ -32,21 +32,25 @@ body {
 
 .exception {
     flex-basis: 20%;
-    padding: 2em;
+    padding: 0em 2em 2em 2em;
     background-color: #2a2a2a;
 
     white-space: pre-wrap;
     word-break: break-word;
 }
 
-.exception__title {
+.exception__timestamp {
     color: #bebebe;
-    font-size: 2em;
-    margin-bottom: 0;
+}
+
+.exception__type {
+    color: #bebebe;
+    font-size: 1.5em;
 }
 
 .exception__message {
     color: white;
+    font-size: 2em;
 }
 
 .overflow-scroll{
@@ -144,26 +148,6 @@ body {
     margin-right: 1em;
 }
 
-.editorLink__btn {
-    padding: 0.25em 0.5em;
-    border: 1px solid black;
-    background-color: rgb(245, 237, 239);
-    font-size: 0.8em;
-    color: rgb(63, 62, 62);
-    text-decoration: none;
-    border-radius: 5px;
-    display: none;
-}
-
-.editorLink__btn:hover {
-    background-color: #e6e3e3;
-    color: #4288CE;
-    border-color: #4288CE;
-}
-
-.stacktrace--active .editorLink__btn {
-    display: block;
-}
 .data-filter {
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
@@ -192,6 +176,26 @@ a.button.active {
     border-color: #3377bb;
 }
 
+.editorLink__btn {
+    display: none;
+    background: #e2e2e2;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 5px;
+    font-size: 14px;
+    color: #4288CE;
+    border: 1px solid #ccc;
+}
+
+.editorLink__btn:hover {
+    background: #4288CE;
+    color: white;
+    border-color: #3377bb;
+}
+
+.stacktrace--active .editorLink__btn {
+    display: inline-block;
+}
 
 .data-table-container label {
   font-size: 16px;

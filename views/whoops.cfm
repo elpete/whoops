@@ -23,7 +23,7 @@
     var EventDetails = {
         "Error Code":        (oException.getErrorCode() != 0) ? oException.getErrorCode() : "",
         "Type":              oException.gettype(),
-        "Extended":          (oException.getExtendedInfo() != "") ? oException.getExtendedInfo() : "",
+        "Extended Info":     (oException.getExtendedInfo() != "") ? oException.getExtendedInfo() : "",
         "Message":           HTMLEditFormat( oException.getmessage() ).listChangeDelims( '<br>', chr(13)&chr(10) ),
         "Detail":            HTMLEditFormat( oException.getDetail() ).listChangeDelims( '<br>', chr(13)&chr(10) ),
         "Event":             (event.getCurrentEvent() != "") ? event.getCurrentEvent() :"N/A",
@@ -35,7 +35,7 @@
         "Layout":            (Event.getCurrentLayout() != "") ? Event.getCurrentLayout() :"N/A",
         "Module":            event.getCurrentLayoutModule(),
         "View":              event.getCurrentView(),
-        "itemorder": ["Error Code","Type","Extended","Message","Detail","Event","Route","Route Name","Routed Module","Routed Namespace", "Routed URL","Layout","Module","View"]
+        "itemorder": ["Error Code","Type","Message","Detail","Extended Info","Event","Route","Route Name","Routed Module","Routed Namespace", "Routed URL","Layout","Module","View"]
     }
     var frameworkSnapshot = {
         "Coldfusion ID" :"Session Scope Not Enabled",
@@ -60,13 +60,13 @@
             if(structkeyExists(session, "cfid") )      fwString &= "CFID=" & session.CFID;
             if(structkeyExists(session, "CFToken") )   fwString &= "<br/>CFToken=" & session.CFToken;
             if(structkeyExists(session, "sessionID") ) fwString &= "<br/>JSessionID=" & session.sessionID;
-        } 
+        }
         frameworkSnapshot["Coldfusion ID"] = fwString;
     }
 
     var databaseInfo = {};
     if( (
-            isStruct( oException.getExceptionStruct() ) 
+            isStruct( oException.getExceptionStruct() )
             OR findNoCase( "DatabaseQueryException", getMetadata( oException.getExceptionStruct() ).getName() )
           ) AND findnocase( "database", oException.getType() )
     ){
@@ -157,8 +157,8 @@
         <div class="whoops">
             <div class="whoops__nav">
                 <div class="exception">
-                    <small class="exception__message">#dateformat(now(), "MM/DD/YYYY")# #timeformat(now(),"hh:MM:SS TT")#</small>
-                    <h1 class="exception__title">#trim(EventDetails["Error Code"] & " " & local.e.type)#</h1>
+                    <small class="exception__timestamp">#dateformat(now(), "MM/DD/YYYY")# #timeformat(now(),"hh:MM:SS TT")#</small>
+                    <h1 class="exception__type">#trim(EventDetails["Error Code"] & " " & local.e.type)#</h1>
                     <div class="exception__message">#local.e.message#</div>
                 </div>
                 <div class="whoops_stacktrace_panel_info">
@@ -218,7 +218,7 @@
                         <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'session_scope');" >Session</a>
                         <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'application_scope');">Application</a>
                         <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'cookies_scope');">Cookies</a>
-                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'stacktrace_scope');">Stack Trace</a>
+                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'stacktrace_scope');">Raw Stack Trace</a>
                     </div>
                     <cfoutput>
                     <div  id="eventdetails" class="data-table">
@@ -263,7 +263,7 @@
                         #displayScope(cookie)#
                     </div>
                     <div  id="stacktrace_scope" class="data-table">
-                        <label>Stack Trace</label>
+                        <label>Raw Stack Trace</label>
                         <div class="data-stacktrace">#processStackTrace( oException.getstackTrace() )#</div>
                     </div>
 
