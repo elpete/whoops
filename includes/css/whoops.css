@@ -26,6 +26,7 @@ body {
 .whoops__detail {
     flex: 1 1 70%;
     display: flex;
+    overflow-x: scroll;
     flex-direction: column;
 }
 
@@ -33,16 +34,23 @@ body {
     flex-basis: 20%;
     padding: 2em;
     background-color: #2a2a2a;
+
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 .exception__title {
     color: #bebebe;
-    font-size: 1em;
-    margin-bottom: 0.5em;
+    font-size: 2em;
+    margin-bottom: 0;
 }
 
 .exception__message {
     color: white;
+}
+
+.overflow-scroll{
+  overflow: auto;
 }
 
 .whoops__stacktrace_panel {
@@ -55,6 +63,13 @@ body {
 .whoops_stacktrace_panel_info {
     padding: 0.5em 1em;
     background-color: #ded8d8;
+}
+
+.data-stacktrace {
+    white-space: pre;
+    width: 100%;
+    padding: 8px;
+    font: 13px "Source Code Pro", Monaco, Consolas, "Lucida Console", monospace;
 }
 
 .stacktrace__list {
@@ -111,8 +126,8 @@ body {
     font-family: 'Fira Mono', monospace;
     background-color: #333;
     color: #E9E4E5;
-    overflow: scroll;
     padding-left: 0.5em;
+    overflow-y: scroll;
 }
 
 .request-info {
@@ -149,6 +164,34 @@ body {
 .stacktrace--active .editorLink__btn {
     display: block;
 }
+.data-filter {
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+.hidden {
+  display: none;
+}
+a.button {
+    display: inline-block;
+    background: #e2e2e2;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 5px;
+    font-size: 14px;
+    color: #4288CE;
+    border: 1px solid #ccc;
+}
+
+a.button:hover {
+    background: #cecece;
+}
+
+a.button.active {
+    background: #4288CE;
+    color: white;
+    border-color: #3377bb;
+}
+
 
 .data-table-container label {
   font-size: 16px;
