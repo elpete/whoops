@@ -1,6 +1,22 @@
 Element.prototype.documentOffsetTop = function () {
     return this.offsetTop + ( this.offsetParent ? this.offsetParent.documentOffsetTop() : 0 );
 };
+var codePreviewShow = true;
+function toggleCodePreview() {
+    var codePreviewContainer = document.querySelector( ".code-preview" );
+    var toggleBtnIcon = document.querySelector( ".slideup_row i" );
+    console.log(codePreviewContainer);
+    if(codePreviewShow){
+        codePreviewContainer.classList.add('hidePreview');
+        toggleBtnIcon.classList.remove('up');
+        toggleBtnIcon.classList.add('down');
+    } else {
+        codePreviewContainer.classList.remove('hidePreview');  
+        toggleBtnIcon.classList.remove('down');      
+        toggleBtnIcon.classList.add('up');
+    }
+    codePreviewShow = !codePreviewShow;
+}
 
 function scrollToLine( line ) {
     var selectedLine = codeContainer.querySelector( ".line.number" + line );
