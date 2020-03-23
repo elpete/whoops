@@ -200,10 +200,12 @@
                 </div>
             </div>
             <div class="whoops__detail">
-                <div class="code-preview">
-                    <cfset instance = local.e.TagContext[ 1 ] />
-                    <div id="code-container"></div>
-                </div>
+                <cfif stackFrames gt 0>
+                    <div class="code-preview">
+                        <cfset instance = local.e.TagContext[ 1 ] />
+                        <div id="code-container"></div>
+                    </div>
+                </cfif>
                 <div class="request-info data-table-container">
                     <div>
                         <h2 class="details-heading">Environment &amp; details:</h2>
