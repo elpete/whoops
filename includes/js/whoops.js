@@ -25,19 +25,20 @@ function filterScopes(linkEl, filterID ) {
     var links = document.querySelectorAll('div.data-filter a');
     for (var i = 0; i < links.length; i++){
         links[i].classList.remove('active');
-    } 
+    }
     linkEl.classList.add('active');
     var sections = document.querySelectorAll('div.data-table');
     if(filterID != ""){
         for (var i = 0; i < sections.length; i++){
             sections[i].classList.add('hidden');
-        } 
+        }
         document.getElementById(filterID).classList.remove('hidden');
     } else {
         for (var i = 0; i < sections.length; i++){
             sections[i].classList.remove('hidden');
-        } 
+        }
     }
+    document.getElementById('request-info-details').scrollTop = 0;
 }
 
 var codeWrapper = document.querySelector( ".code-preview" );

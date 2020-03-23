@@ -205,69 +205,71 @@
                     <div id="code-container"></div>
                 </div>
                 <div class="request-info data-table-container">
-                    <h2 class="details-heading">Environment &amp; details:</h2>
-                    <div class="data-filter" >
-                    <strong>Filter Scopes: </strong>
-                        <a class="button active" href="javascript:void(0);" onclick="filterScopes(this,'');">All</a>
-                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'eventdetails');">Error Details</a>
-                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'frameworksnapshot_scope');">Framework Snapshot</a>
-                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'database_scope');" >Database</a>
-                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'frameworksnapshot_scope');" >RC</a>
-                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'prc_scope');" >PRC</a>
-                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'headers_scope');" >Headers</a>
-                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'session_scope');" >Session</a>
-                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'application_scope');">Application</a>
-                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'cookies_scope');">Cookies</a>
-                        <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'stacktrace_scope');">Raw Stack Trace</a>
+                    <div>
+                        <h2 class="details-heading">Environment &amp; details:</h2>
+                        <div class="data-filter" >
+                        <strong>Filter Scopes: </strong>
+                            <a class="button active" href="javascript:void(0);" onclick="filterScopes(this,'');">All</a>
+                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'eventdetails');">Error Details</a>
+                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'frameworksnapshot_scope');">Framework Snapshot</a>
+                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'database_scope');" >Database</a>
+                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'frameworksnapshot_scope');" >RC</a>
+                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'prc_scope');" >PRC</a>
+                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'headers_scope');" >Headers</a>
+                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'session_scope');" >Session</a>
+                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'application_scope');">Application</a>
+                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'cookies_scope');">Cookies</a>
+                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'stacktrace_scope');">Raw Stack Trace</a>
+                        </div>
                     </div>
                     <cfoutput>
-                    <div  id="eventdetails" class="data-table">
-                        <label>Error Details</label>
-                        #displayScope(EventDetails)#
-                    </div>
+                    <div id="request-info-details">
+                        <div id="eventdetails" class="data-table">
+                            <label>Error Details</label>
+                            #displayScope(EventDetails)#
+                        </div>
 
-                    <div id="frameworksnapshot_scope" class="data-table">
-                        <label>Framework Snapshot</label>
-                        #displayScope(frameworkSnapshot)#
+                        <div id="frameworksnapshot_scope" class="data-table">
+                            <label>Framework Snapshot</label>
+                            #displayScope(frameworkSnapshot)#
+                        </div>
+                        <div id="database_scope"  class="data-table">
+                            <label>Database</label>
+                            #displayScope(databaseInfo)#
+                        </div>
+                        <div id="frameworksnapshot_scope"  class="data-table">
+                            <label>RC</label>
+                            #displayScope(rc)#
+                        </div>
+                        <div id="prc_scope"  class="data-table">
+                            <label>PRC</label>
+                            #displayScope(prc)#
+                        </div>
+                        <div id="headers_scope"  class="data-table">
+                            <label>Headers</label>
+                            #displayScope(getHttpRequestData().headers)#
+                        </div>
+                        <div id="session_scope"  class="data-table">
+                            <label>Session</label>
+                            <cftry>
+                                <cfset thisSession = session />
+                                    #displayScope(thisSession)#
+                                <cfcatch></cfcatch>
+                            </cftry>
+                        </div>
+                        <div id="application_scope" class="data-table">
+                            <label>Application</label>
+                            #displayScope(application)#
+                        </div>
+                        <div id="cookies_scope" class="data-table">
+                            <label>Cookies</label>
+                            #displayScope(cookie)#
+                        </div>
+                        <div  id="stacktrace_scope" class="data-table">
+                            <label>Raw Stack Trace</label>
+                            <div class="data-stacktrace">#processStackTrace( oException.getstackTrace() )#</div>
+                        </div>
                     </div>
-                    <div id="database_scope"  class="data-table">
-                        <label>Database</label>
-                        #displayScope(databaseInfo)#
-                    </div>
-                    <div id="frameworksnapshot_scope"  class="data-table">
-                        <label>RC</label>
-                        #displayScope(rc)#
-                    </div>
-                    <div id="prc_scope"  class="data-table">
-                        <label>PRC</label>
-                        #displayScope(prc)#
-                    </div>
-                    <div id="headers_scope"  class="data-table">
-                        <label>Headers</label>
-                        #displayScope(getHttpRequestData().headers)#
-                    </div>
-                    <div id="session_scope"  class="data-table">
-                        <label>Session</label>
-                        <cftry>
-                            <cfset thisSession = session />
-                                #displayScope(thisSession)#
-                            <cfcatch></cfcatch>
-                        </cftry>
-                    </div>
-                    <div id="application_scope" class="data-table">
-                        <label>Application</label>
-                        #displayScope(application)#
-                    </div>
-                    <div id="cookies_scope" class="data-table">
-                        <label>Cookies</label>
-                        #displayScope(cookie)#
-                    </div>
-                    <div  id="stacktrace_scope" class="data-table">
-                        <label>Raw Stack Trace</label>
-                        <div class="data-stacktrace">#processStackTrace( oException.getstackTrace() )#</div>
-                    </div>
-
-
                     </cfoutput>
                 </div>
             </div>

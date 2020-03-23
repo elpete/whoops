@@ -24,9 +24,10 @@ body {
 }
 
 .whoops__detail {
+    height: 100vh;
     flex: 1 1 70%;
     display: flex;
-    overflow-x: scroll;
+    overflow: hidden;
     flex-direction: column;
 }
 
@@ -126,18 +127,24 @@ body {
 }
 
 .code-preview {
-    flex-basis: 60%;
+    flex: 2;
     font-family: 'Fira Mono', monospace;
     background-color: #333;
     color: #E9E4E5;
     padding-left: 0.5em;
-    overflow-y: scroll;
+    overflow: scroll;
 }
 
 .request-info {
     flex: 1;
-    overflow: scroll;
     padding: 2em;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#request-info-details {
+    overflow: scroll;
 }
 
 .badge {
