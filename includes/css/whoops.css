@@ -12,6 +12,46 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+.slideup_row {
+    margin: 8px auto 0;
+}
+
+.slidebtn {
+    width: 57px;
+    text-align: center;
+}
+
+i {
+    border: solid #8c8c8c;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 9px 0 0 9px;
+    margin-bottom: -4px;
+    transition:all 0.3s ease;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  margin-top: -7px;
+  margin-bottom: 2px;
+}
+
 .whoops {
     display: flex;
     height: 100%;
@@ -126,6 +166,9 @@ body {
     color: #a29d9d;
 }
 
+.hidePreview {
+   flex: 0 !important;
+}
 .code-preview {
     flex: 2;
     font-family: 'Fira Mono', monospace;
@@ -133,11 +176,12 @@ body {
     color: #E9E4E5;
     padding-left: 0.5em;
     overflow: scroll;
+    transition:flex 0.5s ease-out;
 }
 
 .request-info {
     flex: 1;
-    padding: 2em;
+    padding-left: 2em;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -162,9 +206,13 @@ body {
 .hidden {
   display: none;
 }
+a.button-icononly{
+  min-width: 50px;
+  text-align: center;
+}
 a.button {
     display: inline-block;
-    background: #e2e2e2;
+    background: #f3f3f3;
     border-radius: 5px;
     text-decoration: none;
     padding: 5px;

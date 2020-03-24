@@ -207,6 +207,10 @@
                     </div>
                 </cfif>
                 <div class="request-info data-table-container">
+
+                <div class="slideup_row">
+                    <a href="javascript:void(0);" onclick="toggleCodePreview()" class="button button-icononly" ><i class="arrow up"></i></a>
+                </div>
                     <div>
                         <h2 class="details-heading">Environment &amp; details:</h2>
                         <div class="data-filter" >
