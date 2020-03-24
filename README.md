@@ -2,7 +2,7 @@
 
 ## Interactive debugger for exceptions in CFML
 
-Blatently copied from https://filp.github.io/whoops/ (Thank you!)
+Blatantly copied from https://filp.github.io/whoops/ (Thank you!)
 
 ### Install
 
