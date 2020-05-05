@@ -5,6 +5,7 @@ component {
     this.webUrl = "https://github.com/elpete/whoops";
 
     function configure() {
+        
     }
 
     function afterConfigurationLoad( event, interceptData, buffer ) {

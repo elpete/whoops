@@ -174,7 +174,7 @@
                                 <span class="badge">#stackFrames - i + 1#</span>
                                 <div class="stacktrace__info">
                                     <h3 class="stacktrace__location">
-                                        #replace( instance.template, root, "" )#:<span class="stacktrace__line-number">#instance.line#</span>
+                                        #replace( instance.template, root, "" )#: <span class="stacktrace__line-number">#instance.line#</span>
                                     </h3>
                                     <cfif structKeyExists( instance, "codePrintPlain" )>
                                         <cfset codesnippet = instance.codePrintPlain >
@@ -219,7 +219,7 @@
                             <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'eventdetails');">Error Details</a>
                             <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'frameworksnapshot_scope');">Framework Snapshot</a>
                             <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'database_scope');" >Database</a>
-                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'frameworksnapshot_scope');" >RC</a>
+                            <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'rc_scope');" >RC</a>
                             <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'prc_scope');" >PRC</a>
                             <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'headers_scope');" >Headers</a>
                             <a class="button" href="javascript:void(0);" onclick="filterScopes(this,'session_scope');" >Session</a>
@@ -243,7 +243,7 @@
                             <label>Database</label>
                             #displayScope(databaseInfo)#
                         </div>
-                        <div id="frameworksnapshot_scope"  class="data-table">
+                        <div id="rc_scope"  class="data-table">
                             <label>RC</label>
                             #displayScope(rc)#
                         </div>
