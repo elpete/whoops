@@ -75,7 +75,7 @@
           "NativeErrorCode": oException.getNativeErrorCode(),
           "SQL Sent": oException.getSQL(),
           "Driver Error Message": oException.getqueryError(),
-          "Name-Value Pairs": oException.getWhere(),
+          "Name-Value Pairs": oException.getWhere()
         };
 
     }
