@@ -1,5 +1,7 @@
 # whoops
 
+## A version of whoops is now included in ColdBox 6.  All issues for the ColdBox 6 version of whoops should be reported to the ColdBox project.  Additionally, whoops is in maintenance mode and intended just for ColdBox 5 and earlier projects.
+
 ## Interactive debugger for exceptions in CFML
 
 Blatantly copied from https://filp.github.io/whoops/ (Thank you!)
