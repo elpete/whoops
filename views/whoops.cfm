@@ -20,7 +20,7 @@
     catch( any e ){
         local.thisInetHost = "localhost";
     }
-    var EventDetails = {
+    EventDetails = {
         "Error Code":        (oException.getErrorCode() != 0) ? oException.getErrorCode() : "",
         "Type":              oException.gettype(),
         "Extended Info":     (oException.getExtendedInfo() != "") ? oException.getExtendedInfo() : "",
@@ -37,7 +37,7 @@
         "View":              event.getCurrentView(),
         "itemorder": ["Error Code","Type","Message","Detail","Extended Info","Event","Route","Route Name","Routed Module","Routed Namespace", "Routed URL","Layout","Module","View"]
     }
-    var frameworkSnapshot = {
+    frameworkSnapshot = {
         "Coldfusion ID" :"Session Scope Not Enabled",
         "Template Path" : CGI.CF_TEMPLATE_PATH,
         "Path Info"     : CGI.PATH_INFO,
@@ -51,7 +51,7 @@
     };
 
     if(local.sessionScopeExists) {
-        var fwString = "";
+        fwString = "";
         if( isDefined("client")) {
             if(structkeyExists(session, "cfid") )      fwString &= "CFID=" & client.CFID;
             if(structkeyExists(session, "CFToken") )   fwString &= "<br/>CFToken=" & client.CFToken;
@@ -64,18 +64,18 @@
         frameworkSnapshot["Coldfusion ID"] = fwString;
     }
 
-    var databaseInfo = {};
+    databaseInfo = {};
     if( (
             isStruct( oException.getExceptionStruct() )
             OR findNoCase( "DatabaseQueryException", getMetadata( oException.getExceptionStruct() ).getName() )
           ) AND findnocase( "database", oException.getType() )
     ){
-        var databaseInfo = {
+        databaseInfo = {
           "SQL State": oException.getSQLState(),
           "NativeErrorCode": oException.getNativeErrorCode(),
           "SQL Sent": oException.getSQL(),
           "Driver Error Message": oException.getqueryError(),
-          "Name-Value Pairs": oException.getWhere(),
+          "Name-Value Pairs": oException.getWhere()
         };
 
     }
