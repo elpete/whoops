@@ -80,7 +80,7 @@
 
     }
 
-    function displayScope (scope) {
+    displayScope = function(scope) {
         var list = '<table class="data-table"><tbody>';
         var orderedArr = scope;
         if(structKeyExists(scope,'itemorder')) orderedArr = scope.itemorder;
@@ -107,7 +107,7 @@
         return list;
     }
 
-    function openInEditorURL( required event, required struct instance ) {
+    openInEditorURL = function( required event, required struct instance ) {
         var editor = event.getController().getUtil().getSystemSetting( "WHOOPS_EDITOR", "" );
         switch( editor ) {
             case "vscode":
