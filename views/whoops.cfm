@@ -273,7 +273,7 @@
                         </div>
                         <div  id="stacktrace_scope" class="data-table">
                             <label>Raw Stack Trace</label>
-                            <div class="data-stacktrace">#processStackTrace( oException.getstackTrace() )#</div>
+                            <div class="data-stacktrace">#oException.processStackTrace( oException.getstackTrace() )#</div>
                         </div>
                     </div>
                     </cfoutput>
