@@ -8,7 +8,9 @@ Blatantly copied from https://filp.github.io/whoops/ (Thank you!)
 
 ### Install
 
-`box install whoops --saveDev`
+```
+box install whoops --saveDev
+```
 
 ### Usage
 
